@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andi Saiful Kohir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:  #0a1830;
+    --navy-panel: #0f2340;
+    --navy-line:  #1c3a63;
+    --cyan:       #6fd6ff;
+    --cyan-dim:   #3f7fa3;
+    --paper:      #eaf3fb;
+    --paper-dim:  #9db6cf;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--navy-deep);
+    background-image:
+      linear-gradient(var(--navy-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--navy-line) 1px, transparent 1px);
+    background-size:28px 28px;
+    color:var(--paper);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+  }
+  main{
+    max-width:640px;
+    width:100%;
+  }
+  h1{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:1.8rem;
+    margin:0 0 0.3rem;
+  }
+  .tagline{
+    color:var(--paper-dim);
+    margin:0 0 2rem;
+    font-size:1rem;
+  }
+  .project{
+    display:block;
+    background:var(--navy-panel);
+    border:1px solid var(--navy-line);
+    border-radius:6px;
+    padding:1.2rem 1.4rem;
+    margin-bottom:1rem;
+    text-decoration:none;
+    color:var(--paper);
+    transition:border-color 0.15s;
+  }
+  .project:hover{
+    border-color:var(--cyan-dim);
+  }
+  .project h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:1.05rem;
+    margin:0 0 0.4rem;
+    color:var(--cyan);
+  }
+  .project p{
+    margin:0;
+    color:var(--paper-dim);
+    font-size:0.9rem;
+    line-height:1.5;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Andi Saiful Kohir</h1>
+  <p class="tagline">Small tools and projects, built while learning.</p>
+
+  <a class="project" href="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/">
+    <h2>RC Strain Diagram Calculator</h2>
+    <p>Calculator + AutoCAD drawing tool for reinforced-concrete strain diagrams — browser input, live preview, exports a script to draw straight into AutoCAD.</p>
+  </a>
+
+  <!-- Add more project cards here as you build them, same pattern as above -->
+
+</main>
+</body>
+</html>
