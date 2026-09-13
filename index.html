@@ -72,6 +72,24 @@
     font-size:0.9rem;
     line-height:1.5;
   }
+  .social-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.8rem 1.2rem;
+    margin-top:2rem;
+    padding-top:1rem;
+    border-top:1px solid var(--navy-line);
+  }
+  .social-links a{
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    text-decoration:none;
+    transition:color 0.15s;
+  }
+  .social-links a:hover{
+    color:var(--cyan);
+  }
 </style>
 </head>
 <body>
@@ -85,6 +103,13 @@
   </a>
 
   <!-- Add more project cards here as you build them, same pattern as above -->
+
+  <footer class="social-links" aria-label="Social links">
+    <a href="http://wa.me/6285174264076">WhatsApp</a>
+    <a href="mailto:andisaifulkohir@gmail.com">Email</a>
+    <a href="https://github.com/AndiSaifulKohir">GitHub</a>
+    <a href="https://www.instagram.com/andisaifulkohir/">Instagram</a>
+  </footer>
 
 </main>
 </body>
