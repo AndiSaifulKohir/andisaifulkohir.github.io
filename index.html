@@ -1,116 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andi Saiful Kohir</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy-deep:  #0a1830;
-    --navy-panel: #0f2340;
-    --navy-line:  #1c3a63;
-    --cyan:       #6fd6ff;
-    --cyan-dim:   #3f7fa3;
-    --paper:      #eaf3fb;
-    --paper-dim:  #9db6cf;
-  }
-  *{ box-sizing:border-box; }
-  body{
-    margin:0;
-    min-height:100vh;
-    background:var(--navy-deep);
-    background-image:
-      linear-gradient(var(--navy-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--navy-line) 1px, transparent 1px);
-    background-size:28px 28px;
-    color:var(--paper);
-    font-family:'IBM Plex Sans', system-ui, sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:2rem;
-  }
-  main{
-    max-width:640px;
-    width:100%;
-  }
-  h1{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:1.8rem;
-    margin:0 0 0.3rem;
-  }
-  .tagline{
-    color:var(--paper-dim);
-    margin:0 0 2rem;
-    font-size:1rem;
-  }
-  .project{
-    display:block;
-    background:var(--navy-panel);
-    border:1px solid var(--navy-line);
-    border-radius:6px;
-    padding:1.2rem 1.4rem;
-    margin-bottom:1rem;
-    text-decoration:none;
-    color:var(--paper);
-    transition:border-color 0.15s;
-  }
-  .project:hover{
-    border-color:var(--cyan-dim);
-  }
-  .project h2{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:1.05rem;
-    margin:0 0 0.4rem;
-    color:var(--cyan);
-  }
-  .project p{
-    margin:0;
-    color:var(--paper-dim);
-    font-size:0.9rem;
-    line-height:1.5;
-  }
-  .social-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:0.8rem 1.2rem;
-    margin-top:2rem;
-    padding-top:1rem;
-    border-top:1px solid var(--navy-line);
-  }
-  .social-links a{
-    color:var(--paper-dim);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.85rem;
-    text-decoration:none;
-    transition:color 0.15s;
-  }
-  .social-links a:hover{
-    color:var(--cyan);
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Andi Saiful Kohir | Civil Structural Engineer</title>
+  <meta
+    name="description"
+    content="Portfolio of Andi Saiful Kohir, a civil structural engineer."
+  />
+
+  <!-- Apply saved theme before the page loads -->
+  <script>
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/shared.css" />
+  <link rel="stylesheet" href="assets/css/portfolio.css" />
 </head>
+
 <body>
-<main>
-  <h1>Andi Saiful Kohir</h1>
-  <p class="tagline">Small tools and projects, built while learning.</p>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="logo" href="#top">andi<span>.</span></a>
 
-  <a class="project" href="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/">
-    <h2>RC Strain Diagram Calculator</h2>
-    <p>Calculator + AutoCAD drawing tool for reinforced-concrete strain diagrams — browser input, live preview, exports a script to draw straight into AutoCAD.</p>
-  </a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
 
-  <!-- Add more project cards here as you build them, same pattern as above -->
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+        >
+          <span id="theme-icon" aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-  <footer class="social-links" aria-label="Social links">
-    <a href="http://wa.me/6285174264076">WhatsApp</a>
-    <a href="mailto:andisaifulkohir@gmail.com">Email</a>
-    <a href="https://github.com/AndiSaifulKohir">GitHub</a>
-    <a href="https://www.instagram.com/andisaifulkohir/">Instagram</a>
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-content">
+        <p class="eyebrow">Civil & Structural Engineering</p>
+
+        <h1>
+          <span>Engineering</span>
+          <span>the foundations</span>
+          <span>of tomorrow</span>
+        </h1>
+
+        <p class="hero-text">
+          I’m Andi, a civil structural engineer interested in thoughtful
+          design, practical solutions, and reliable structures.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">
+            View featured work
+          </a>
+
+          <a class="button button-secondary" href="#contact">
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Featured work -->
+    <section class="section container" id="work">
+      <div class="section-heading">
+        <p class="eyebrow">Selected work</p>
+        <h2>Featured projects</h2>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-type">STRUCTURAL DESIGN</span>
+            <span class="project-number">01</span>
+          </div>
+
+          <h3>Structural Design</h3>
+
+          <p>
+            To be added later.
+          </p>
+
+          <div class="project-tags">
+            <span>Structural Design</span>
+            <span>Analysis</span>
+          </div>
+
+          <a class="project-link" href="#">
+            Project details →
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-type">BUILDING ANALYSIS</span>
+            <span class="project-number">02</span>
+          </div>
+
+          <h3>Building Analysis</h3>
+
+          <p>
+            To be added later.
+          </p>
+
+          <div class="project-tags">
+            <span>Assessment</span>
+            <span>Engineering</span>
+          </div>
+
+          <a class="project-link" href="#">
+            Project details →
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <span class="project-type">OTHER PROJECT</span>
+            <span class="project-number">03</span>
+          </div>
+
+          <h3>RC Strain Diagram Calculator</h3>
+
+          <p>
+            A small tool for solving and drawing the reinforced-concrete strain diagram used when estimating crack length / beam performance.
+          </p>
+
+          <div class="project-tags">
+            <span>CAD / BIM</span>
+            <span>Documentation</span>
+          </div>
+
+          <a class="project-link" href="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/">
+            Go To Project →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about-section" id="about">
+      <div class="about-content container">
+        <div>
+          <p class="eyebrow">About Andi</p>
+          <h2>Practical thinking with strong foundations</h2>
+        </div>
+
+        <div class="about-text">
+          <p>
+            I am a civil structural engineer focused on creating safe,
+            efficient, and practical solutions.
+          </p>
+
+          <div class="skills">
+            <span>Structural Analysis</span>
+            <span>Structural Design</span>
+            <span>CAD / BIM</span>
+            <span>Technical Reporting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section section container" id="contact">
+      <p class="eyebrow">Contact</p>
+      <h2>Let’s build something worthwhile.</h2>
+
+      <p>
+        For inquiries, collaborations, or project
+        discussions, feel free to send me a message.
+      </p>
+
+      <a class="button button-primary" href="mailto:andisaifulkohir@gmail.com">
+        Email Andi
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content container">
+      <p>© <span id="current-year"></span> Andi Saiful Kohir. All rights reserved.</p>
+
+      <div class="social-links">
+        <a
+          href="https://github.com/andisaifulkohir"
+          target="_blank"
+          rel="noopener"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://www.instagram.com/andisaifulkohir/"
+          target="_blank"
+          rel="noopener"
+        >
+          Instagram
+        </a>
+
+        <a
+          href="https://wa.me/6285174264076"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+      </div>
+    </div>
   </footer>
 
-</main>
+  <script src="assets/js/shared.js"></script>
+  <script src="assets/js/portfolio.js"></script>
 </body>
 </html>
