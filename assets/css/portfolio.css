@@ -47,6 +47,40 @@
   margin-top: 34px;
 }
 
+/* Keep the calculator's desktop controls and diagram visible in the compact hero card. */
+.calculator-preview {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.calculator-frame {
+  container-type: inline-size;
+  aspect-ratio: 900 / 790;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.calculator-frame iframe {
+  display: block;
+  width: 900px;
+  height: 790px;
+  border: 0;
+  transform: scale(calc(100cqw / 900px));
+  transform-origin: top left;
+}
+
+:root[data-theme="dark"] .calculator-frame iframe {
+  filter: invert(0.95) hue-rotate(180deg);
+}
+
+.calculator-preview-link {
+  color: var(--blue);
+  font-weight: 700;
+}
+
 /* Structural illustration */
 .structure-card {
   overflow: hidden;
@@ -302,6 +336,11 @@
   }
 
   .structure-card {
+    width: min(100%, 620px);
+    margin-inline: auto;
+  }
+
+  .calculator-preview {
     width: min(100%, 620px);
     margin-inline: auto;
   }
