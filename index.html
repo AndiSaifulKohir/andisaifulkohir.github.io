@@ -78,27 +78,115 @@
       </div>
 
       <div class="calculator-preview">
-        <div class="card-label">
-          <span>RC STRAIN DIAGRAM</span>
-          <span>LIVE PREVIEW</span>
+        <div class="preview-slides" aria-live="polite">
+          <section class="preview-slide" aria-label="Free body diagram solver preview">
+            <div class="card-label">
+              <span>FREE BODY DIAGRAM SOLVER</span>
+              <span>DISTRIBUTED LOAD EXAMPLE</span>
+            </div>
+
+            <img
+              class="preview-screenshot"
+              src="assets/images/fbd-solver-preview.png"
+              data-dark-src="assets/images/fbd-solver-preview-dark.png"
+              alt="Free body diagram solver showing a simply supported beam under a distributed load"
+              width="904"
+              height="660"
+              style="display: block; width: 100%; max-width: 100%; height: auto;"
+            />
+
+            <a
+              class="card-footer calculator-preview-link"
+              href="https://andisaifulkohir.github.io/FBD-Solver/"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>OPEN FULL SOLVER</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+
+          <section class="preview-slide" aria-label="RC Strain Diagram Calculator preview" hidden>
+            <div class="card-label">
+              <span>RC STRAIN DIAGRAM</span>
+              <span>DEFAULT PAGE SCREENSHOT</span>
+            </div>
+
+            <img
+              class="preview-screenshot calculator-screenshot"
+              src="assets/images/rc-strain-calculator-default.png"
+              data-dark-src="assets/images/rc-strain-calculator-default-dark.png"
+              alt="Screenshot of the RC Strain Diagram Calculator with its default inputs and diagram"
+              width="850"
+              height="620"
+            />
+
+            <a
+              class="card-footer calculator-preview-link"
+              href="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>OPEN FULL CALCULATOR</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+
+          <section
+            class="preview-slide"
+            aria-label="More projects preview"
+            hidden
+          >
+            <div class="card-label">
+              <span>MORE PROJECTS</span>
+              <span>COMING SOON</span>
+            </div>
+
+            <div class="preview-placeholder" role="img" aria-label="More project previews coming soon">
+              <span class="preview-placeholder-icon" aria-hidden="true">＋</span>
+              <h2>More projects on the way</h2>
+              <p>Preview coming soon</p>
+            </div>
+
+            <div class="card-footer preview-placeholder-footer">
+              <span>MORE PROJECTS ON THE WAY</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </section>
         </div>
 
-        <div class="calculator-frame">
-          <iframe
-            src="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/"
-            title="Interactive preview of the RC Strain Diagram Calculator"
-          ></iframe>
+        <div class="preview-controls" aria-label="Preview navigation">
+          <button class="preview-arrow" type="button" data-preview-step="-1" aria-label="Previous preview">
+            <span aria-hidden="true">←</span>
+          </button>
+          <div class="preview-pagination" aria-label="Choose a preview">
+            <button
+              class="preview-dot"
+              type="button"
+              data-preview-index="0"
+              aria-label="Show preview 1: Free body diagram solver"
+              aria-pressed="true"
+            ></button>
+            <button
+              class="preview-dot"
+              type="button"
+              data-preview-index="1"
+              aria-label="Show preview 2: RC Strain Diagram Calculator"
+              aria-pressed="false"
+            ></button>
+            <button
+              class="preview-dot"
+              type="button"
+              data-preview-index="2"
+              aria-label="Show preview 3: More projects"
+              aria-pressed="false"
+            ></button>
+          </div>
+          <span class="preview-count" aria-live="polite">1 / 3</span>
+          <button class="preview-arrow" type="button" data-preview-step="1" aria-label="Next preview">
+            <span aria-hidden="true">→</span>
+          </button>
         </div>
-
-        <a
-          class="card-footer calculator-preview-link"
-          href="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/"
-          target="_blank"
-          rel="noopener"
-        >
-          <span>OPEN FULL CALCULATOR</span>
-          <span aria-hidden="true">↗</span>
-        </a>
       </div>
     </section>
 
@@ -110,7 +198,7 @@
       </div>
 
       <div class="project-grid">
-        <article class="project-card">
+        <article class="project-card" id="structural-design">
           <div class="project-top">
             <span class="project-type">STRUCTURAL DESIGN</span>
             <span class="project-number">01</span>
@@ -122,12 +210,12 @@
             To be added later.
           </p>
 
-          <a class="project-link" href="#">
-            Project details →
+          <a class="project-link" href="#structural-design">
+            Project placeholder →
           </a>
         </article>
 
-        <article class="project-card">
+        <article class="project-card" id="building-analysis">
           <div class="project-top">
             <span class="project-type">BUILDING ANALYSIS</span>
             <span class="project-number">02</span>
@@ -139,24 +227,33 @@
             To be added later.
           </p>
 
-          <a class="project-link" href="#">
-            Project details →
+          <a class="project-link" href="#building-analysis">
+            Project placeholder →
           </a>
         </article>
 
-        <article class="project-card">
+        <article class="project-card" id="other-projects">
           <div class="project-top">
             <span class="project-type">OTHER PROJECT</span>
             <span class="project-number">03</span>
           </div>
 
-          <h3>RC Strain Diagram Calculator</h3>
+          <h3>FBD Solver</h3>
 
           <p>
-            A small tool for solving and drawing the reinforced-concrete strain diagram used when estimating crack length / beam performance.
+            A small tool for solving and drawing free-body diagrams used in structural analysis.
           </p>
+          <img
+              class="preview-screenshot"
+              src="assets/images/fbd-solver-preview.png"
+              data-dark-src="assets/images/fbd-solver-preview-dark.png"
+              alt="Free body diagram solver showing a simply supported beam under a distributed load"
+              width="904"
+              height="660"
+              style="display: block; width: 100%; max-width: 100%; height: auto;"
+            />
 
-          <a class="project-link" href="https://andisaifulkohir.github.io/RC-Strain-Diagram-Calculator/">
+          <a class="project-link" href="https://andisaifulkohir.github.io/FBD-Solver/">
             Go To Project →
           </a>
         </article>
@@ -180,7 +277,7 @@
           <div class="skills">
             <span>Structural Analysis</span>
             <span>Structural Design</span>
-            <span>CAD / BIM</span>
+            <span>CAE & CAD/BIM</span>
             <span>Technical Reporting</span>
           </div>
         </div>
@@ -237,5 +334,6 @@
 
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/portfolio.js"></script>
+  <script src="assets/js/quick-access.js"></script>
 </body>
 </html>

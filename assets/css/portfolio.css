@@ -47,7 +47,6 @@
   margin-top: 34px;
 }
 
-/* Keep the calculator's desktop controls and diagram visible in the compact hero card. */
 .calculator-preview {
   overflow: hidden;
   border: 1px solid var(--border);
@@ -56,29 +55,115 @@
   box-shadow: var(--shadow);
 }
 
-.calculator-frame {
-  container-type: inline-size;
-  aspect-ratio: 900 / 790;
-  overflow: hidden;
-  background: var(--background);
+.preview-slide[hidden] {
+  display: none;
 }
 
-.calculator-frame iframe {
+.preview-screenshot {
   display: block;
-  width: 900px;
-  height: 790px;
-  border: 0;
-  transform: scale(calc(100cqw / 900px));
-  transform-origin: top left;
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  object-position: top;
 }
 
-:root[data-theme="dark"] .calculator-frame iframe {
-  filter: invert(0.95) hue-rotate(180deg);
+.preview-placeholder {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+  background:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px),
+    var(--surface-muted);
+  background-size: 28px 28px;
+  text-align: center;
+}
+
+.preview-placeholder-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--blue);
+  font-size: 2rem;
+}
+
+.preview-placeholder h2 {
+  font-size: 1.35rem;
+}
+
+.preview-placeholder p {
+  color: var(--text-muted);
 }
 
 .calculator-preview-link {
   color: var(--blue);
   font-weight: 700;
+}
+
+.preview-placeholder-footer {
+  color: var(--text-muted);
+}
+
+.preview-controls {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.preview-arrow {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.preview-arrow:hover,
+.preview-dot:hover {
+  border-color: var(--blue);
+}
+
+.preview-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 1px solid var(--text-muted);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.preview-dot[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: var(--blue);
+}
+
+.preview-count {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
 }
 
 /* Structural illustration */
@@ -343,6 +428,16 @@
   .calculator-preview {
     width: min(100%, 620px);
     margin-inline: auto;
+  }
+
+  .preview-placeholder {
+    min-height: 300px;
+  }
+
+  .preview-screenshot {
+    height: 300px;
+    object-fit: contain;
+    background: var(--surface-muted);
   }
 
   .project-grid {
