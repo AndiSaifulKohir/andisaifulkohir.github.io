@@ -10,7 +10,10 @@
   stylesheet.href = new URL("../css/quick-access.css", scriptUrl).href;
   document.head.append(stylesheet);
 
-  const toggleHost = document.querySelector(".nav-links, .header-top");
+  const toggleHost =
+    document.querySelector(".nav-links") ||
+    document.querySelector(".header-controls") ||
+    document.querySelector(".header-top");
   if (!toggleHost) {
     console.error("Quick access could not find a navigation area for its toggle.");
     return;
