@@ -37,3 +37,40 @@ if (previewSlides.length > 1 && previewDots.length === previewSlides.length) {
     dot.addEventListener("click", () => showPreview(index));
   });
 }
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  root: null,
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const animateOnScroll = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    }
+  });
+}, observerOptions);
+
+// Observe elements that should animate on scroll
+const elementsToAnimate = document.querySelectorAll('.project-card, .about-content, .contact-section');
+elementsToAnimate.forEach((el) => animateOnScroll.observe(el));
+
+// Add smooth header behavior on scroll
+let lastScroll = 0;
+const header = document.querySelector('.site-header');
+
+if (header && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
+      header.style.boxShadow = 'var(--shadow-sm)';
+    } else {
+      header.style.boxShadow = '0 1px 0 rgba(29, 77, 115, 0.03)';
+    }
+
+    lastScroll = currentScroll;
+  }, { passive: true });
+}
