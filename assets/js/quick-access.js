@@ -1,4 +1,14 @@
 (() => {
+  // Tool links point to asaiko.org paths (/fbd-solver/). On GitHub Pages the
+  // tools live under their repo names, so swap in data-github-pages-href there.
+  function useGitHubPagesLinks(root) {
+    if (!location.hostname.endsWith("github.io")) return;
+    root.querySelectorAll("a[data-github-pages-href]").forEach((link) => {
+      link.href = link.dataset.githubPagesHref;
+    });
+  }
+  useGitHubPagesLinks(document);
+
   const scriptUrl = document.currentScript?.src;
   if (!scriptUrl) {
     console.error("Quick access could not determine its shared asset URL.");
@@ -41,6 +51,7 @@
     .then((markup) => {
       document.body.insertAdjacentHTML("beforeend", markup);
       const sidebar = document.querySelector("#quick-sidebar");
+      useGitHubPagesLinks(sidebar);
       const close = document.querySelector("#quick-sidebar-close");
       toggle.disabled = false;
 
