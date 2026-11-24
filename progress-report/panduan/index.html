@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Pengguna Aplikasi Laporan Progress</title>
+<!-- Dibuat otomatis oleh tools/panduan.js dari docs/PANDUAN_PENGGUNA.md. Jangan diedit langsung. -->
+<style>
+:root{--ink:#1D09C8;--mint:#B5E8CC;--bg:#f7f7f4;--card:#fff;--text:#1b1b22;--muted:#5d5d6b;--line:#dcdce3;--soft:#eef0ff;--code:#f0f0f4;--warn:#fff6dc;--bar:#1D09C8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#a99dff;--mint:#5fae86;--bg:#1d1e21;--card:#26272b;--text:#e8e8ec;--muted:#a3a3ad;--line:#3a3b41;--soft:#2e2d45;--code:#323338;--warn:#3a3322;--bar:#2b2378}}
+:root[data-theme="dark"]{--ink:#a99dff;--mint:#5fae86;--bg:#1d1e21;--card:#26272b;--text:#e8e8ec;--muted:#a3a3ad;--line:#3a3b41;--soft:#2e2d45;--code:#323338;--warn:#3a3322;--bar:#2b2378}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%}
+.top{position:sticky;top:0;z-index:20;display:flex;gap:8px;align-items:center;padding:10px 16px;background:var(--bar);color:#fff}
+.top b{flex:1;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top button{font:inherit;font-size:14px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.wrap{display:flex;max-width:1180px;margin:0 auto}
+nav{width:290px;flex:none;position:sticky;top:52px;align-self:flex-start;max-height:calc(100vh - 52px);overflow:auto;padding:16px 12px 24px 16px;border-right:1px solid var(--line)}
+nav input{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text)}
+nav .hasil{font-size:13px;color:var(--muted);min-height:1.4em;margin:6px 2px}
+nav ul{list-style:none;margin:0;padding:0}
+nav ul ul{padding-left:12px;margin:2px 0 6px;border-left:2px solid var(--line)}
+nav a{display:block;padding:5px 8px;border-radius:6px;color:var(--text);text-decoration:none;font-size:14px;line-height:1.35}
+nav ul ul a{font-size:13px;color:var(--muted)}
+nav a:hover{background:var(--soft)}
+nav a.aktif{background:var(--soft);color:var(--ink);font-weight:600}
+main{flex:1;min-width:0;padding:8px 28px 80px}
+.intro h1{font-size:28px;line-height:1.25;margin:20px 0 8px;color:var(--ink)}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 22px 18px;margin:18px 0}
+section.sembunyi{display:none}
+h2{font-size:22px;margin:18px 0 10px;padding-bottom:8px;border-bottom:3px solid var(--mint);color:var(--ink)}
+h3{font-size:18px;margin:22px 0 8px}
+h4{font-size:16px;margin:18px 0 4px;color:var(--ink)}
+p{margin:8px 0}
+a{color:var(--ink)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em;font-family:Consolas,"Courier New",monospace}
+blockquote{margin:12px 0;padding:10px 14px;background:var(--warn);border-left:4px solid #e2b33c;border-radius:8px}
+blockquote p{margin:4px 0}
+ol,ul{padding-left:24px}
+li{margin:4px 0}
+hr{display:none}
+.tbl{overflow-x:auto;margin:10px 0;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600}
+mark{background:#ffe27a;color:#000;border-radius:2px}
+#atas{position:fixed;right:16px;bottom:16px;z-index:20;border:none;background:var(--bar);color:#fff;border-radius:50%;width:46px;height:46px;font-size:20px;box-shadow:0 2px 8px rgba(0,0,0,.25);cursor:pointer;display:none}
+#tutup{display:none}
+@media (max-width:899px){
+  nav{position:fixed;top:52px;left:0;bottom:0;z-index:30;width:min(88vw,340px);max-height:none;background:var(--bg);transform:translateX(-105%);transition:transform .2s;box-shadow:2px 0 12px rgba(0,0,0,.25)}
+  body.menu nav{transform:none}
+  #tutup{display:block;margin-bottom:10px}
+  main{padding:4px 16px 80px}
+  section{padding:2px 14px 14px;border-radius:12px}
+  .intro h1{font-size:23px}
+  h2{font-size:20px}
+}
+@media (min-width:900px){#menu{display:none}}
+@media print{.top,nav,#atas{display:none!important}main{padding:0}section{border:none;padding:0;break-inside:auto}section.sembunyi{display:block}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div class="top"><button type="button" id="menu" aria-label="Buka daftar isi">☰ Menu</button><b>Panduan Pengguna Aplikasi Laporan Progress</b><button type="button" id="tema" aria-label="Ganti tema">◐ Otomatis</button></div>
+<div class="wrap">
+<nav aria-label="Daftar isi">
+<button type="button" id="tutup" class="tutup">✕ Tutup menu</button>
+<input id="cari" type="search" placeholder="Cari, mis. RAB, PIN, foto…" aria-label="Cari di panduan">
+<div class="hasil" id="hasil" aria-live="polite"></div>
+<ul><li><a href="#mulai-dari-sini">Mulai dari sini</a></li><li><a href="#daftar-isi">Daftar isi</a></li><li><a href="#1-kenalan-dulu">1. Kenalan dulu</a></li><li><a href="#2-membuka-aplikasi-semua-peran">2. Membuka aplikasi (semua peran)</a><ul><li><a href="#21-pertama-kali">2.1 Pertama kali</a></li><li><a href="#22-bagian-layar">2.2 Bagian layar</a></li><li><a href="#23-saat-menekan-simpan">2.3 Saat menekan Simpan</a></li><li><a href="#24-ganti-orang-di-hp-yang-sama">2.4 Ganti orang di HP yang sama</a></li></ul></li><li><a href="#3-tim-lapangan-mengisi-laporan">3. Tim lapangan: mengisi laporan</a><ul><li><a href="#31-harian-tenaga-kerja-dan-cuaca">3.1 Harian (tenaga kerja dan cuaca)</a></li><li><a href="#32-kegiatan-pekerjaan-yang-dikerjakan">3.2 Kegiatan (pekerjaan yang dikerjakan)</a></li><li><a href="#33-material">3.3 Material</a></li><li><a href="#34-alat">3.4 Alat</a></li><li><a href="#35-foto">3.5 Foto</a></li><li><a href="#36-riwayat-memperbaiki-isian">3.6 Riwayat (memperbaiki isian)</a></li></ul></li><li><a href="#4-peninjau-memeriksa-laporan">4. Peninjau: memeriksa laporan</a><ul><li><a href="#41-rekap-per-tanggal">4.1 Rekap per tanggal</a></li><li><a href="#42-tandai-diperiksa">4.2 Tandai diperiksa</a></li><li><a href="#43-aktivitas">4.3 Aktivitas</a></li><li><a href="#44-pdf-laporan-harian">4.4 PDF Laporan Harian</a></li></ul></li><li><a href="#5-pemilik-proyek-menyiapkan-proyek">5. Pemilik proyek: menyiapkan proyek</a><ul><li><a href="#51-daftar-tugas-sebelum-tim-mulai">5.1 Daftar tugas sebelum tim mulai</a></li><li><a href="#52-mengisi-master_proyek">5.2 Mengisi MASTER_PROYEK</a></li><li><a href="#53-mengatur-tim-dan-pin">5.3 Mengatur tim dan PIN</a></li></ul></li><li><a href="#6-input-rab">6. Input RAB</a><ul><li><a href="#61-cara-a-impor-rab-dari-file">6.1 Cara A: Impor RAB dari file</a></li><li><a href="#62-cara-b-ketik-manual-di-input_rab">6.2 Cara B: Ketik manual di INPUT_RAB</a></li></ul></li><li><a href="#7-jadwal-rencana">7. Jadwal rencana</a></li><li><a href="#8-membaca-laporan-dan-dashboard">8. Membaca laporan dan dashboard</a></li><li><a href="#9-pembuat-proyek-membuat-dan-mengelola-proyek">9. Pembuat Proyek: membuat dan mengelola proyek</a><ul><li><a href="#91-masuk">9.1 Masuk</a></li><li><a href="#92-membuat-proyek-baru">9.2 Membuat proyek baru</a></li><li><a href="#93-proyek-saya">9.3 Proyek saya</a></li></ul></li><li><a href="#10-tanya-jawab-dan-pesan-yang-sering-muncul">10. Tanya jawab dan pesan yang sering muncul</a><ul><li><a href="#101-pesan-di-aplikasi">10.1 Pesan di aplikasi</a></li><li><a href="#102-pertanyaan-umum">10.2 Pertanyaan umum</a></li></ul></li></ul>
+</nav>
+<main>
+<header class="intro">
+<h1 id="panduan-pengguna-aplikasi-laporan-progress">Panduan Pengguna Aplikasi Laporan Progress</h1>
+<p>Panduan ini untuk <strong>pemakai sehari-hari</strong>, bukan untuk pemrogram. Tidak perlu paham komputer: ikuti langkah bernomor dan cocokkan dengan yang tampil di layar HP Anda.</p>
+</header>
+<section data-id="mulai-dari-sini">
+<h2 id="mulai-dari-sini">Mulai dari sini</h2>
+<p>Cari peran Anda, lalu baca bagian yang disebut. Bagian lain boleh dilewati.</p>
+<div class="tbl"><table><thead><tr><th>Saya adalah…</th><th>Pekerjaan saya</th><th>Baca bagian</th></tr></thead><tbody><tr><td><strong>Tim lapangan</strong> (penginput)</td><td>Mengisi laporan harian dari HP</td><td><a href="#1-kenalan-dulu">1</a>, <a href="#2-membuka-aplikasi-semua-peran">2</a>, <a href="#3-tim-lapangan-mengisi-laporan">3</a></td></tr><tr><td><strong>Peninjau</strong></td><td>Memeriksa laporan tim, menandai &quot;diperiksa&quot;, membuat PDF</td><td><a href="#1-kenalan-dulu">1</a>, <a href="#2-membuka-aplikasi-semua-peran">2</a>, <a href="#4-peninjau-memeriksa-laporan">4</a></td></tr><tr><td><strong>Pemilik proyek</strong> (akun Google pemilik spreadsheet)</td><td>Menyiapkan proyek: data proyek, <strong>RAB</strong>, jadwal, tim</td><td><a href="#1-kenalan-dulu">1</a>, <a href="#5-pemilik-proyek-menyiapkan-proyek">5</a>, <a href="#6-input-rab">6</a>, <a href="#7-jadwal-rencana">7</a>, <a href="#8-membaca-laporan-dan-dashboard">8</a></td></tr><tr><td><strong>User Pembuat Proyek</strong></td><td>Membuat proyek baru lewat halaman Pembuat Proyek</td><td><a href="#1-kenalan-dulu">1</a>, <a href="#9-pembuat-proyek-membuat-dan-mengelola-proyek">9</a></td></tr><tr><td>Siapa saja yang sedang bingung</td><td>Ada pesan aneh di layar</td><td><a href="#10-tanya-jawab-dan-pesan-yang-sering-muncul">10</a></td></tr></tbody></table></div>
+</section>
+<section data-id="daftar-isi">
+<h2 id="daftar-isi">Daftar isi</h2>
+<ul><li><a href="#1-kenalan-dulu">1. Kenalan dulu</a></li><li><a href="#2-membuka-aplikasi-semua-peran">2. Membuka aplikasi (semua peran)</a></li><li><a href="#3-tim-lapangan-mengisi-laporan">3. Tim lapangan: mengisi laporan</a></li><li><a href="#4-peninjau-memeriksa-laporan">4. Peninjau: memeriksa laporan</a></li><li><a href="#5-pemilik-proyek-menyiapkan-proyek">5. Pemilik proyek: menyiapkan proyek</a></li><li><a href="#6-input-rab">6. Input RAB</a></li><li><a href="#7-jadwal-rencana">7. Jadwal rencana</a></li><li><a href="#8-membaca-laporan-dan-dashboard">8. Membaca laporan dan dashboard</a></li><li><a href="#9-pembuat-proyek-membuat-dan-mengelola-proyek">9. Pembuat Proyek: membuat dan mengelola proyek</a></li><li><a href="#10-tanya-jawab-dan-pesan-yang-sering-muncul">10. Tanya jawab dan pesan yang sering muncul</a></li></ul>
+</section>
+<section data-id="1-kenalan-dulu">
+<h2 id="1-kenalan-dulu">1. Kenalan dulu</h2>
+<p>Cara kerjanya singkat saja: <strong>tim mengisi dari HP → data masuk ke spreadsheet Google → laporan, dashboard, dan kurva S terhitung sendiri.</strong> Tidak ada yang perlu menghitung manual.</p>
+<div class="tbl"><table><thead><tr><th>Istilah</th><th>Artinya</th></tr></thead><tbody><tr><td><strong>Aplikasi</strong> (web app)</td><td>Halaman yang dibuka dari link di HP. Tidak perlu dipasang dari Play Store.</td></tr><tr><td><strong>Spreadsheet</strong></td><td>File Google Sheets milik proyek. Semua data dan laporan ada di sini. Biasanya hanya pemilik yang membukanya.</td></tr><tr><td><strong>RAB</strong></td><td>Rencana Anggaran Biaya: daftar semua pekerjaan beserta satuan, volume, dan harga. Dasar semua perhitungan progres.</td></tr><tr><td><strong>Item pekerjaan</strong></td><td>Satu baris pekerjaan di RAB, mis. &quot;Pasangan bata merah 1:4&quot;. Tim memilih item ini saat melapor kegiatan.</td></tr><tr><td><strong>Volume</strong></td><td>Banyaknya pekerjaan yang dikerjakan, dalam satuan RAB (m², m³, kg, titik, ls…).</td></tr><tr><td><strong>PIN pribadi</strong></td><td>Kata sandi angka/huruf milik Anda sendiri dari pemegang proyek. Jangan dibagikan.</td></tr><tr><td><strong>Tanggal laporan</strong></td><td>Tanggal di bagian atas aplikasi. Semua isian, foto, dan rekap memakai tanggal ini.</td></tr><tr><td><strong>Bobot</strong></td><td>Porsi nilai satu item terhadap total RAB. Item mahal berbobot besar.</td></tr><tr><td><strong>Deviasi</strong></td><td>Selisih progres nyata dengan rencana. Minus berarti terlambat.</td></tr></tbody></table></div>
+<p><strong>Peran di aplikasi:</strong></p>
+<div class="tbl"><table><thead><tr><th>Peran</th><th>Tab yang tampil</th></tr></thead><tbody><tr><td>Penginput</td><td>Harian, Kegiatan, Material, Alat, Foto, Rekap, Riwayat</td></tr><tr><td>Peninjau</td><td>Rekap, Aktivitas (plus tombol <strong>Tandai diperiksa</strong> bila diizinkan)</td></tr><tr><td>Keduanya</td><td>Semua tab di atas</td></tr><tr><td>Pemilik</td><td>Semua tab, ditambah <strong>Impor RAB</strong></td></tr></tbody></table></div>
+</section>
+<section data-id="2-membuka-aplikasi-semua-peran">
+<h2 id="2-membuka-aplikasi-semua-peran">2. Membuka aplikasi (semua peran)</h2>
+<h3 id="21-pertama-kali">2.1 Pertama kali</h3>
+<ol><li>Buka <strong>link aplikasi</strong> yang dikirim pemegang proyek (berakhiran <code>/exec</code>).</li><li>Masuk ke akun Google bila diminta (akun apa saja).</li><li>Muncul layar <strong>Siapa yang menginput?</strong>
+<ul><li>Pilih <strong>nama Anda</strong> dari daftar.</li><li>Ketik <strong>PIN pribadi</strong> Anda.</li><li>Tekan <strong>Masuk</strong>.</li></ul></li><li>Nama Anda <strong>tidak ada</strong> di daftar? Minta pemegang proyek menambahkan nama Anda dulu.</li></ol>
+<blockquote><p><strong>Tips:</strong> di Chrome HP, tekan menu titik tiga → <strong>Tambahkan ke layar utama</strong>. Aplikasi muncul sebagai ikon seperti aplikasi biasa.</p></blockquote>
+<p>Nama dan PIN diingat di HP itu. Besok tinggal buka ikonnya.</p>
+<h3 id="22-bagian-layar">2.2 Bagian layar</h3>
+<div class="tbl"><table><thead><tr><th>Bagian</th><th>Fungsi</th></tr></thead><tbody><tr><td>Kop atas</td><td>Nama proyek, lokasi, ringkasan progres.</td></tr><tr><td><strong>Tanggal laporan</strong></td><td>Ketuk untuk memilih tanggal. <strong>Periksa tanggal ini sebelum menyimpan apa pun.</strong></td></tr><tr><td><strong>?</strong> (Panduan)</td><td>Membuka panduan ini di tab baru, kapan saja.</td></tr><tr><td><strong>◐ Tampilan</strong></td><td>Ganti tema: Otomatis → Terang → Gelap.</td></tr><tr><td>Deretan tab</td><td>Harian, Kegiatan, dst. (tergantung peran).</td></tr><tr><td>Bagian bawah</td><td>Versi aplikasi, zona waktu, nama Anda, tombol <strong>Ganti nama / PIN</strong>.</td></tr></tbody></table></div>
+<h3 id="23-saat-menekan-simpan">2.3 Saat menekan Simpan</h3>
+<ul><li>Muncul jendela kecil berisi jam berjalan dan langkah proses. Tunggu sampai tertutup sendiri.</li><li>Pesan <strong>hijau</strong> = berhasil. Pesan <strong>merah</strong> = belum tersimpan; baca isinya.</li><li>Tombol <strong>Batalkan</strong> hanya berhenti menunggu di HP. Data mungkin tetap tersimpan di server: cek di tab <strong>Riwayat</strong>.</li><li><strong>Sinyal putus?</strong> Isian tidak hilang. Tunggu sinyal, tekan <strong>Simpan</strong> lagi. Aplikasi menjaga agar data <strong>tidak tercatat dua kali</strong>, walau tombol ditekan berulang.</li></ul>
+<h3 id="24-ganti-orang-di-hp-yang-sama">2.4 Ganti orang di HP yang sama</h3>
+<p>Tekan <strong>Ganti nama / PIN</strong> di bagian bawah, lalu masuk dengan nama dan PIN orang lain.</p>
+</section>
+<section data-id="3-tim-lapangan-mengisi-laporan">
+<h2 id="3-tim-lapangan-mengisi-laporan">3. Tim lapangan: mengisi laporan</h2>
+<p><strong>Urutan yang disarankan setiap hari:</strong></p>
+<ol><li>Cek <strong>tanggal laporan</strong> di atas (biasanya hari ini).</li><li>Tab <strong>Harian</strong>: tenaga kerja dan cuaca (sekali per hari).</li><li>Tab <strong>Kegiatan</strong>: satu entri untuk tiap pekerjaan yang dikerjakan.</li><li>Tab <strong>Material</strong> dan <strong>Alat</strong>: bila ada material masuk/terpakai atau alat di lokasi.</li><li>Tab <strong>Foto</strong>: dokumentasi.</li><li>Tab <strong>Riwayat</strong>: pastikan semua tercatat.</li></ol>
+<h3 id="31-harian-tenaga-kerja-dan-cuaca">3.1 Harian (tenaga kerja dan cuaca)</h3>
+<div class="tbl"><table><thead><tr><th>Isian</th><th>Cara mengisi</th></tr></thead><tbody><tr><td>Pekerja hadir penuh</td><td>Jumlah orang yang bekerja seharian. <strong>Wajib.</strong></td></tr><tr><td>Pekerja hadir setengah hari</td><td>Boleh dikosongkan (dianggap 0).</td></tr><tr><td>Cuaca pagi / siang / sore</td><td>Pilih: Cerah, Mendung, atau Hujan. <strong>Wajib.</strong></td></tr><tr><td>Keterangan</td><td>Catatan bebas, mis. &quot;hujan deras jam 14.00, pekerjaan berhenti&quot;.</td></tr></tbody></table></div>
+<p>Tekan <strong>Simpan</strong>. Laporan Harian hanya <strong>satu per tanggal</strong>: kalau tanggal itu sudah diisi, ubah lewat tab <strong>Riwayat</strong>.</p>
+<h3 id="32-kegiatan-pekerjaan-yang-dikerjakan">3.2 Kegiatan (pekerjaan yang dikerjakan)</h3>
+<ol><li>Di kotak <strong>Cari item pekerjaan…</strong>, ketik sebagian nama pekerjaan (mis. <code>beton</code>, <code>bata</code>).</li><li>Pilih item dari daftar. Muncul keterangan <strong>Satuan · Volume RAB · Terlaksana · Sisa</strong>.</li><li>Isi <strong>Volume</strong> yang dikerjakan hari ini, dalam satuan yang tertulis.
+<ul><li>Desimal boleh pakai <strong>koma atau titik</strong>: <code>2,5</code> atau <code>2.5</code>.</li><li><strong>Jangan</strong> pakai pemisah ribuan: tulis <code>1250</code>, bukan <code>1.250</code>.</li><li>Di bawah kotak tertulis <strong>Terbaca: …</strong>. Pastikan angkanya benar.</li></ul></li><li>Isi <strong>Rincian kegiatan</strong> (mis. &quot;Pengecoran kolom lantai 2 as A-C&quot;) dan <strong>Keterangan</strong> bila perlu.</li><li>Tekan <strong>Simpan</strong>.</li></ol>
+<p><strong>Hal khusus:</strong></p>
+<ul><li><strong>Proyek memakai persen?</strong> Bila pemilik mengatur metode <em>Persen</em>, yang diisi adalah <strong>Progres harian (%)</strong> (0-100), bukan volume.</li><li><strong>Volume melebihi sisa RAB?</strong> Muncul pertanyaan <em>&quot;… melebihi sisa RAB item ini. Tetap simpan?&quot;</em>. Periksa lagi angkanya. Tekan <strong>Batal</strong> bila salah ketik.</li><li><strong>Pekerjaan sudah selesai seluruhnya?</strong> Tekan <strong>Selesaikan 100%</strong>: aplikasi mengisi sisa volume otomatis, Anda tidak perlu menghitung.</li><li><strong>Item tidak ada di daftar?</strong> Item hanya bisa dipilih dari RAB. Laporkan ke pemilik proyek; jangan memilih item lain yang &quot;mirip&quot;.</li></ul>
+<h3 id="33-material">3.3 Material</h3>
+<div class="tbl"><table><thead><tr><th>Isian</th><th>Cara mengisi</th></tr></thead><tbody><tr><td>Nama material</td><td>Ketik; nama yang pernah dipakai muncul sebagai saran. Pakai nama yang sama setiap kali (mis. selalu &quot;Semen 50 kg&quot;).</td></tr><tr><td>Tipe transaksi</td><td><strong>Masuk</strong> (datang ke lokasi), <strong>Pakai</strong> (terpakai), <strong>Retur</strong> (dikembalikan).</td></tr><tr><td>Volume / Qty</td><td>Jumlahnya.</td></tr><tr><td>Satuan</td><td>mis. zak, m³, batang, kg.</td></tr><tr><td>Supplier / dari</td><td>Asal material (boleh kosong).</td></tr><tr><td>Keterangan</td><td>Catatan bebas.</td></tr></tbody></table></div>
+<h3 id="34-alat">3.4 Alat</h3>
+<div class="tbl"><table><thead><tr><th>Isian</th><th>Cara mengisi</th></tr></thead><tbody><tr><td>Nama alat</td><td>mis. Excavator, Concrete mixer. Saran muncul dari data lama.</td></tr><tr><td>Jumlah</td><td>Jumlah unit.</td></tr><tr><td>Status</td><td><strong>Dipakai</strong>, <strong>Standby</strong>, <strong>Rusak</strong>, atau <strong>Keluar</strong> (meninggalkan lokasi).</td></tr><tr><td>Keterangan</td><td>Catatan bebas.</td></tr></tbody></table></div>
+<h3 id="35-foto">3.5 Foto</h3>
+<ol><li>Pilih <strong>Jenis foto</strong>: Umum, Kegiatan, Material, atau Alat.</li><li>Untuk jenis Kegiatan/Material/Alat, pilih juga <strong>Referensi</strong> (item atau nama yang difoto).</li><li>Tekan tombol pilih foto: <strong>ambil dengan kamera</strong> atau pilih dari galeri. Boleh beberapa sekaligus.</li><li>Tekan <strong>Unggah foto</strong>. Tunggu sampai tiap foto bertulisan <strong>Terunggah ✓</strong>.</li></ol>
+<p>Catatan:</p>
+<ul><li>Foto otomatis diperkecil supaya hemat kuota; kualitas tetap cukup untuk laporan.</li><li>Tanggal foto mengikuti <strong>tanggal laporan</strong> di atas.</li><li>Foto yang sudah terunggah <strong>tidak bisa dihapus dari aplikasi</strong>. Salah unggah? Kabari pemilik proyek.</li></ul>
+<h3 id="36-riwayat-memperbaiki-isian">3.6 Riwayat (memperbaiki isian)</h3>
+<p>Tab <strong>Riwayat</strong> menampilkan entri yang <strong>Anda</strong> buat, yang terbaru di atas.</p>
+<ul><li><strong>Ubah</strong>: form terbuka berisi data lama (&quot;Mengubah entri di baris …&quot;). Perbaiki, lalu tekan <strong>Simpan perubahan</strong>.</li><li><strong>Hapus</strong>: entri dikosongkan setelah konfirmasi.</li><li>Entri bertanda <strong>diubah di sheet</strong> tidak punya tombol Ubah/Hapus, karena pemilik sudah mengubahnya langsung di spreadsheet. Minta pemilik bila perlu diperbaiki.</li></ul>
+</section>
+<section data-id="4-peninjau-memeriksa-laporan">
+<h2 id="4-peninjau-memeriksa-laporan">4. Peninjau: memeriksa laporan</h2>
+<h3 id="41-rekap-per-tanggal">4.1 Rekap per tanggal</h3>
+<ol><li>Pilih <strong>tanggal laporan</strong> di atas.</li><li>Buka tab <strong>Rekap</strong>: tampil Harian, Kegiatan, Material, Alat, dan foto tanggal itu, lengkap dengan nama penginputnya.</li><li>Periksa isinya. Bila ada yang salah, minta penginput memperbaikinya lewat Riwayat.</li></ol>
+<h3 id="42-tandai-diperiksa">4.2 Tandai diperiksa</h3>
+<ol><li>Isi <strong>Catatan pemeriksaan</strong> (boleh kosong).</li><li>Tekan <strong>Tandai diperiksa</strong>. Status menjadi hijau <strong>Diperiksa</strong>, dan <strong>PDF Laporan Harian</strong> tanggal itu dibuat otomatis.</li><li>Salah tandai? Tekan <strong>Batalkan tanda</strong>.</li></ol>
+<p>Status kuning <strong>Berubah setelah diperiksa</strong> berarti ada data/foto yang ditambah atau diubah setelah Anda menandai. Periksa lagi, lalu tekan <strong>Tandai ulang</strong>.</p>
+<p>Tombol <strong>Tandai diperiksa</strong> tidak ada? Peran Anda &quot;hanya lihat&quot;. Minta pemegang proyek mengubahnya bila memang perlu menandai.</p>
+<h3 id="43-aktivitas">4.3 Aktivitas</h3>
+<p>Tab <strong>Aktivitas</strong> berisi entri, foto, dan tanda periksa terbaru dari seluruh tim. Ketuk satu baris untuk langsung membuka rekap tanggalnya. Cocok untuk cek cepat setiap pagi.</p>
+<h3 id="44-pdf-laporan-harian">4.4 PDF Laporan Harian</h3>
+<ul><li>Di tab <strong>Rekap</strong>, tekan <strong>Buat PDF</strong> untuk membuat PDF tanggal yang dipilih. Daftar PDF tanggal itu tampil di bawahnya dan bisa dibuka.</li><li>PDF juga dibuat <strong>otomatis</strong>: saat tanggal ditandai diperiksa, dan setiap malam sekitar pukul 21.00 bila hari itu ada data.</li></ul>
+</section>
+<section data-id="5-pemilik-proyek-menyiapkan-proyek">
+<h2 id="5-pemilik-proyek-menyiapkan-proyek">5. Pemilik proyek: menyiapkan proyek</h2>
+<blockquote><p><strong>Siapa &quot;pemilik&quot;?</strong> Akun Google yang memiliki file spreadsheet proyek. Untuk proyek dari <strong>Pembuat Proyek</strong>, pemiliknya adalah <strong>akun admin</strong> Pembuat, bukan user yang mengisi formulir. Pekerjaan di bagian 5-7 (yang membuka spreadsheet) dikerjakan dari akun itu. User Pembuat cukup menyiapkan file RAB dan mengirimkannya ke admin.</p></blockquote>
+<h3 id="51-daftar-tugas-sebelum-tim-mulai">5.1 Daftar tugas sebelum tim mulai</h3>
+<p>Kerjakan berurutan; centang bila selesai.</p>
+<ol><li><strong>Aktifkan proyek</strong> (sekali): buka link aplikasi dengan akun pemilik, tekan <strong>Izinkan</strong>. Tunggu sampai muncul <strong>Buka aplikasi</strong>. (Untuk proyek buatan user, link <strong>Aktifkan</strong> dikirim ke email admin.)</li><li><strong>Lengkapi data proyek</strong> di sheet <code>MASTER_PROYEK</code> (<a href="#52-mengisi-master_proyek">5.2</a>).</li><li><strong>Isi RAB</strong> (<a href="#6-input-rab">bagian 6</a>). Wajib sebelum tim melapor kegiatan.</li><li><strong>Isi jadwal rencana</strong> (<a href="#7-jadwal-rencana">bagian 7</a>), supaya kurva S dan deviasi terhitung.</li><li><strong>Atur tim</strong>: nama, peran, dan PIN tiap anggota (<a href="#53-mengatur-tim-dan-pin">5.3</a>).</li><li><strong>Uji sekali</strong>: simpan 1 Harian dan 1 Kegiatan dari HP, lihat di tab <strong>Rekap</strong>, lalu hapus lewat <strong>Riwayat</strong>.</li><li><strong>Bagikan link aplikasi</strong> ke tim, plus nama dan PIN masing-masing secara pribadi.</li></ol>
+<h3 id="52-mengisi-master_proyek">5.2 Mengisi MASTER_PROYEK</h3>
+<p>Buka spreadsheet proyek, sheet <code>MASTER_PROYEK</code>. Isi <strong>sel kolom C</strong> di sebelah labelnya. Proyek dari Pembuat sudah terisi sebagian dari formulir.</p>
+<div class="tbl"><table><thead><tr><th>Label</th><th>Isi</th></tr></thead><tbody><tr><td>Nama Proyek, Lokasi Proyek, Nomor Kontrak</td><td>Teks bebas.</td></tr><tr><td>Nilai Kontrak (Rp)</td><td>Angka saja, tanpa &quot;Rp&quot; dan titik.</td></tr><tr><td>Tanggal Mulai, Tanggal Selesai (Rencana)</td><td>Tanggal. Menentukan jumlah minggu proyek.</td></tr><tr><td>Tipe Proyek</td><td><strong>Swasta</strong> atau <strong>Pemerintah</strong> (menentukan kop dan blok tanda tangan).</td></tr><tr><td>Jumlah Pihak TTD (1-4)</td><td>Jumlah penanda tangan di laporan.</td></tr><tr><td>Kop Baris 1-2, Pihak 1-4 Jabatan/Nama (kolom F-G)</td><td>Isi pada bagian <strong>SWASTA</strong> atau <strong>PEMERINTAH</strong> sesuai tipe proyek.</td></tr><tr><td>Logo 1-4 dan Jumlah logo</td><td>Opsional; lihat catatan di bawah sheet.</td></tr></tbody></table></div>
+<p>Sel <strong>Total Nilai RAB</strong> dan <strong>Durasi (Minggu)</strong> terhitung sendiri, jangan diketik. Kotak status di bawah tabel harus berbunyi <strong>✓ Konfigurasi proyek lengkap &amp; valid</strong>.</p>
+<p><strong>Metode input kegiatan</strong> (sel <code>J2</code> di sheet <code>LOG_KEGIATAN</code>): <code>Volume</code> (tim mengisi volume; disarankan) atau <code>Persen</code> (tim mengisi progres harian %). Tentukan <strong>sebelum</strong> tim mulai, dan jangan diganti di tengah jalan.</p>
+<h3 id="53-mengatur-tim-dan-pin">5.3 Mengatur tim dan PIN</h3>
+<p>Tiap anggota punya <strong>nama</strong>, <strong>peran</strong>, dan <strong>PIN pribadi</strong> (minimal 6 karakter).</p>
+<ul><li><strong>Lewat Pembuat Proyek</strong> (paling mudah): <strong>Proyek saya</strong> → <strong>Tim lapangan</strong> → tambah/ubah anggota.</li><li><strong>Lewat spreadsheet</strong> (pemilik): menu <strong>Laporan Progress → Atur PIN anggota tim (mode terbuka)</strong>.</li></ul>
+<div class="tbl"><table><thead><tr><th>Peran</th><th>Untuk siapa</th></tr></thead><tbody><tr><td>Penginput</td><td>Tim lapangan yang mengisi laporan.</td></tr><tr><td>Peninjau</td><td>Pengawas/atasan yang memeriksa.</td></tr><tr><td>Keduanya</td><td>Orang yang mengisi sekaligus memeriksa.</td></tr></tbody></table></div>
+<p>Anggota lupa PIN: buat PIN baru untuknya dengan cara yang sama. HP yang masih memakai PIN lama otomatis diminta masuk ulang.</p>
+</section>
+<section data-id="6-input-rab">
+<h2 id="6-input-rab">6. Input RAB</h2>
+<p>RAB adalah <strong>fondasi</strong> aplikasi: daftar item di tab Kegiatan, bobot, progres, kurva S, dan semua laporan berasal dari sheet <code>INPUT_RAB</code>. Isi dengan teliti <strong>sebelum</strong> tim mulai melapor.</p>
+<p>Ada dua cara:</p>
+<div class="tbl"><table><thead><tr><th></th><th><strong>Cara A: Impor RAB</strong> (disarankan)</th><th><strong>Cara B: Ketik manual</strong></th></tr></thead><tbody><tr><td>Cocok untuk</td><td>Sudah punya file RAB <strong>.xlsx</strong> atau <strong>.pdf hasil ekspor Excel</strong></td><td>RAB pendek, atau file berupa hasil scan/foto</td></tr><tr><td>Di mana</td><td>Aplikasi, tab <strong>Impor RAB</strong></td><td>Spreadsheet, sheet <code>INPUT_RAB</code></td></tr><tr><td>Siapa</td><td>Akun pemilik</td><td>Akun pemilik</td></tr><tr><td>Kelebihan</td><td>Cepat, angka dicek otomatis (volume × harga = jumlah)</td><td>Bisa untuk RAB apa pun</td></tr></tbody></table></div>
+<blockquote><p><strong>Penting untuk kedua cara:</strong> RAB hanya bisa diganti <strong>selama belum ada kegiatan tercatat</strong>. Setelah tim mulai melapor kegiatan, mengganti RAB akan memutus progres, sehingga impor ditolak. Kapasitas: <strong>1000 baris</strong> (termasuk baris kategori dan sub).</p></blockquote>
+<h3 id="61-cara-a-impor-rab-dari-file">6.1 Cara A: Impor RAB dari file</h3>
+<p><strong>Siapkan:</strong> file RAB <strong>.xlsx</strong>, atau <strong>.pdf yang dibuat dari Excel</strong> (bukan hasil scan/foto). Laptop lebih nyaman daripada HP untuk memeriksa pratinjau. Perlu internet.</p>
+<ol><li>Buka aplikasi dengan <strong>akun Google pemilik</strong>, lalu tab <strong>Impor RAB</strong>.</li><li>Tekan <strong>File RAB</strong> dan pilih file Anda. Tunggu sampai pratinjau tampil (PDF besar bisa beberapa detik).</li><li><strong>Periksa Sheet</strong> (khusus .xlsx yang berisi beberapa sheet): aplikasi memilih sheet dengan item terbanyak, mis. <code>RAB</code>, bukan <code>REKAP</code>. Ganti bila salah.</li><li><strong>Periksa Kolom</strong>: aplikasi menebak kolom Uraian, Satuan, Volume, Harga satuan, Spesifikasi, dan Jumlah. Ganti bila perlu, misalnya:
+<ul><li>Harga <strong>termasuk PPN</strong> atau <strong>tanpa PPN</strong> (bawaan: kolom &quot;+ PPN&quot; bila ada).</li><li>Volume <strong>CCO</strong> atau <strong>kontrak</strong> (bawaan: kolom paling kiri).</li></ul></li><li><strong>Periksa Struktur</strong>: huruf besar (A, B, C…) menjadi <strong>Kategori</strong>; tingkat di bawahnya (I, II…, 1, 2…) menjadi <strong>Sub</strong>. Baris Total, Sub Total, tanda tangan, dan keterangan otomatis diabaikan (lihat <strong>Baris diabaikan</strong>).</li><li><strong>Periksa tanda warna</strong> pada tiap baris:
+<div class="tbl"><table><thead><tr><th>Tanda</th><th>Artinya</th><th>Yang perlu dilakukan</th></tr></thead><tbody><tr><td>Tanpa warna</td><td>Angka cocok</td><td>Tidak ada.</td></tr><tr><td>Garis <strong>kuning</strong> + catatan</td><td>Angka diperbaiki otomatis, mis. volume tercetak 0,59 padahal 0,58725</td><td>Baca catatannya; biasanya sudah benar.</td></tr><tr><td>Garis <strong>merah</strong></td><td>Angka tidak cocok dan tidak bisa diperbaiki</td><td>Cek ke file asli; buang barisnya atau perbaiki file lalu impor ulang.</td></tr><tr><td>Total <strong>✓ hijau</strong></td><td>Total sama dengan total dokumen</td><td>Aman.</td></tr><tr><td>Total <strong>⚠ kuning</strong></td><td>Total berbeda</td><td>Cari baris merah/kuning penyebabnya.</td></tr></tbody></table></div></li></ol>
+<ol start="7"><li><strong>Saring bila perlu:</strong>
+<ul><li>Centang <strong>Buang item bervolume 0 / -</strong> untuk membuang item kosong.</li><li>Lepas centang kategori/sub/item yang tidak dipakai.</li><li>Centang <strong>Tampilkan hanya yang bermasalah</strong> untuk melihat baris kuning/merah saja.</li></ul></li><li>Tekan <strong>Tulis ke INPUT_RAB</strong>, lalu konfirmasi. Bila total tidak sama dengan dokumen, ada konfirmasi kedua.</li><li>Selesai. Buka tab <strong>Kegiatan</strong>: item baru sudah muncul di daftar.</li></ol>
+<p>Setelah impor:</p>
+<ul><li>Isi RAB lama (bila ada) diganti seluruhnya.</li><li>Bila sebelumnya sudah ada RAB, kolom Mulai/Selesai di <code>JADWAL_RENCANA</code> <strong>dikosongkan</strong> karena urutan pekerjaan berubah. Isi ulang (<a href="#7-jadwal-rencana">bagian 7</a>).</li><li>Item tanpa satuan diisi <code>ls</code> dengan catatan.</li></ul>
+<h3 id="62-cara-b-ketik-manual-di-input_rab">6.2 Cara B: Ketik manual di INPUT_RAB</h3>
+<p>Buka spreadsheet → sheet <code>INPUT_RAB</code>. Isian dimulai <strong>baris 6</strong>. Hanya <strong>6 kolom</strong> yang diketik; kolom lain berisi rumus dan terisi sendiri.</p>
+<div class="tbl"><table><thead><tr><th>Kolom</th><th>Judul</th><th>Diisi pada</th><th>Contoh</th></tr></thead><tbody><tr><td>B</td><td>Kategori Pekerjaan</td><td>Baris <strong>kategori</strong> saja</td><td><code>I. PEKERJAAN PERSIAPAN</code></td></tr><tr><td>C</td><td>Sub-Pekerjaan</td><td>Baris <strong>sub</strong> saja (opsional)</td><td><code>Galian dan Urugan</code></td></tr><tr><td>D</td><td>Uraian Detail</td><td>Baris <strong>item</strong></td><td><code>Galian tanah pondasi</code></td></tr><tr><td>E</td><td>Satuan</td><td>Baris item</td><td><code>m3</code>, <code>m2</code>, <code>kg</code>, <code>ls</code>, <code>titik</code></td></tr><tr><td>F</td><td>Volume RAB</td><td>Baris item</td><td><code>125,5</code></td></tr><tr><td>G</td><td>Harga Satuan (Rp)</td><td>Baris item</td><td><code>85000</code></td></tr></tbody></table></div>
+<p><strong>Aturannya: satu baris = satu hal.</strong> Kategori, sub, dan item masing-masing punya baris sendiri, dan tiap baris hanya mengisi kolomnya.</p>
+<p>Contoh susunan yang benar:</p>
+<div class="tbl"><table><thead><tr><th>Baris</th><th>B Kategori</th><th>C Sub</th><th>D Uraian</th><th>E Satuan</th><th>F Volume</th><th>G Harga</th></tr></thead><tbody><tr><td>6</td><td>I. PEKERJAAN PERSIAPAN</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>7</td><td></td><td></td><td>Mobilisasi dan demobilisasi</td><td>ls</td><td>1</td><td>68000000</td></tr><tr><td>8</td><td></td><td></td><td>Pagar seng keliling t=2m</td><td>m</td><td>240</td><td>285000</td></tr><tr><td>9</td><td>II. PEKERJAAN STRUKTUR</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>10</td><td></td><td>Galian dan Urugan</td><td></td><td></td><td></td><td></td></tr><tr><td>11</td><td></td><td></td><td>Galian tanah pondasi</td><td>m3</td><td>125,5</td><td>85000</td></tr><tr><td>12</td><td></td><td></td><td>Urugan pasir bawah pondasi</td><td>m3</td><td>18</td><td>310000</td></tr></tbody></table></div>
+<p>Tips mengetik:</p>
+<ul><li>Item boleh langsung di bawah kategori tanpa sub (baris 7-8 di contoh).</li><li><strong>Volume dan harga harus angka</strong>: tanpa &quot;Rp&quot;, tanpa satuan, tanpa titik ribuan. Tanda desimal mengikuti pengaturan spreadsheet (umumnya koma untuk Indonesia). Angka yang menempel di kiri sel biasanya terbaca sebagai teks; kolom <strong>Cek</strong> akan memberi tahu.</li><li>Item dianggap item pekerjaan (bisa dipilih tim) bila <strong>satuan terisi dan volume bukan 0</strong>.</li><li><strong>Nama item jangan kembar</strong> dalam kategori/sub yang sama. Kalau ada dua &quot;Bekisting&quot;, bedakan: &quot;Bekisting kolom&quot; dan &quot;Bekisting balok&quot;.</li><li>Jangan memakai tanda <code>›</code> di nama.</li><li><strong>Jangan menyisipkan atau menghapus baris</strong> sheet; cukup kosongkan isi selnya. Jangan mengetik di kolom berwarna/berumus.</li><li>Menyalin dari Excel lain? Tempel dengan <strong>Edit → Tempel khusus → Hanya nilai</strong> (Ctrl+Shift+V) supaya format dan rumus sheet tidak rusak.</li></ul>
+<p><strong>Cek hasilnya:</strong></p>
+<ul><li>Kotak status di atas tabel harus berbunyi <strong>✓ Semua item RAB valid</strong>.</li><li>Kolom <strong>Cek</strong> di kanan tiap baris harus <code>OK</code>. Bila tidak:
+<div class="tbl"><table><thead><tr><th>Pesan Cek</th><th>Perbaikan</th></tr></thead><tbody><tr><td>⚠ Volume bukan angka / ⚠ Harga bukan angka</td><td>Hapus huruf, &quot;Rp&quot;, atau titik ribuan.</td></tr><tr><td>⚠ Satuan kosong</td><td>Isi kolom E.</td></tr><tr><td>⚠ Volume kosong/0</td><td>Isi volume, atau hapus satuannya bila memang bukan item.</td></tr><tr><td>⚠ Harga kosong</td><td>Isi harga satuan.</td></tr><tr><td>⚠ Volume negatif / ⚠ Harga negatif</td><td>Hilangkan tanda minus.</td></tr><tr><td>⚠ Nama ganda</td><td>Bedakan nama item yang kembar.</td></tr></tbody></table></div></li></ul>
+<ul><li>Sheet <code>MASTER_PROYEK</code> → <strong>Total Nilai RAB</strong> harus sama dengan total RAB dokumen Anda.</li></ul>
+</section>
+<section data-id="7-jadwal-rencana">
+<h2 id="7-jadwal-rencana">7. Jadwal rencana</h2>
+<p>Jadwal dipakai untuk <strong>kurva S rencana</strong> dan <strong>deviasi</strong>. Tanpa jadwal, progres nyata tetap terhitung, tetapi tidak ada pembandingnya.</p>
+<ol><li>Buka sheet <code>JADWAL_RENCANA</code>. Daftar item dan bobotnya sudah terisi sendiri dari RAB.</li><li>Untuk tiap item, isi kolom <strong>Mulai</strong> dan <strong>Selesai</strong> dengan <strong>nomor minggu</strong>, bukan tanggal. Minggu 1 = minggu pertama sejak Tanggal Mulai proyek.
+<ul><li>Contoh: pekerjaan galian dikerjakan minggu ke-2 sampai ke-4 → Mulai <code>2</code>, Selesai <code>4</code>.</li></ul></li><li>Bobot dibagi rata ke minggu-minggu itu secara otomatis (sel biru).</li><li>Kolom <strong>Validator</strong> harus <code>OK</code>. Kotak status di atas harus berbunyi <strong>✓ Distribusi rencana valid</strong>.</li></ol>
+<p>Ringkasan di atas sheet menunjukkan berapa item yang sudah dijadwalkan (mis. <code>58 / 60 item</code>).</p>
+</section>
+<section data-id="8-membaca-laporan-dan-dashboard">
+<h2 id="8-membaca-laporan-dan-dashboard">8. Membaca laporan dan dashboard</h2>
+<p>Semua sheet laporan terisi otomatis dari isian tim. <strong>Jangan mengetik di sel rumus</strong>; cukup ganti sel pemilih (tanggal/minggu/bulan).</p>
+<div class="tbl"><table><thead><tr><th>Sheet</th><th>Isinya</th><th>Cara memilih periode</th></tr></thead><tbody><tr><td><code>DASHBOARD</code></td><td>Kartu progres, deviasi, kurva S, grafik per kategori, peringkat pekerjaan</td><td>Isi <strong>Dari</strong> dan <strong>s/d</strong> di bagian atas</td></tr><tr><td><code>LAPORAN_HARIAN</code></td><td>Laporan satu hari, siap cetak dengan tanda tangan</td><td>Isi Tanggal, Bulan, Tahun di baris atas</td></tr><tr><td><code>LAPORAN_MINGGUAN</code></td><td>Progres per minggu (landscape)</td><td>Ketik nomor minggu di <strong>K3</strong></td></tr><tr><td><code>LAPORAN_BULANAN</code></td><td>Progres per bulan (landscape)</td><td>Pilih bulan di <strong>K3</strong></td></tr><tr><td><code>KURVA_S</code></td><td>Rencana vs realisasi kumulatif per minggu</td><td>Otomatis</td></tr><tr><td><code>REKAP_PRODUKTIVITAS</code></td><td>Rekap tenaga kerja dan produktivitas</td><td>Isi Dari Tanggal / Sampai Tanggal</td></tr></tbody></table></div>
+<p><strong>Membuat PDF dari spreadsheet</strong> (menu <strong>Laporan Progress</strong>):</p>
+<ul><li><strong>Buat PDF Laporan Harian (tanggal terpilih)</strong></li><li><strong>Buat PDF Laporan Mingguan (minggu terpilih)</strong></li><li><strong>Buat PDF Laporan Bulanan (bulan terpilih)</strong></li></ul>
+<p>PDF tersimpan di folder <strong>PDF Laporan - &lt;nama proyek&gt;</strong> di Google Drive, dikelompokkan per bulan.</p>
+<p><strong>Menu lain yang berguna bagi pemilik:</strong></p>
+<div class="tbl"><table><thead><tr><th>Menu</th><th>Kapan dipakai</th></tr></thead><tbody><tr><td>Rapikan Laporan Harian</td><td>Laporan harian menampilkan baris kosong atau ada kegiatan yang tidak tampil.</td></tr><tr><td>Atur zona waktu (WIB/WITA/WIT)</td><td>Jam di laporan tidak sesuai daerah proyek.</td></tr><tr><td>Proteksi kolom rumus dan sheet laporan</td><td>Mencegah rumus terhapus tidak sengaja.</td></tr><tr><td>Versi aplikasi</td><td>Melihat versi dan status penataan tampilan.</td></tr></tbody></table></div>
+</section>
+<section data-id="9-pembuat-proyek-membuat-dan-mengelola-proyek">
+<h2 id="9-pembuat-proyek-membuat-dan-mengelola-proyek">9. Pembuat Proyek: membuat dan mengelola proyek</h2>
+<p>Pembuat Proyek adalah halaman terpisah untuk membuat proyek baru dalam ±5 menit. Link dan PIN-nya diberikan oleh admin.</p>
+<h3 id="91-masuk">9.1 Masuk</h3>
+<ol><li>Buka link Pembuat Proyek, masuk akun Google (akun apa saja).</li><li>Isi <strong>Nama Anda</strong> dan <strong>PIN</strong> dari admin, lalu masuk. Keduanya diingat di perangkat itu sampai Anda menekan <strong>Keluar</strong>.</li><li>Tombol <strong>? Panduan</strong> di kanan atas membuka panduan ini kapan saja.</li></ol>
+<h3 id="92-membuat-proyek-baru">9.2 Membuat proyek baru</h3>
+<p>Formulir tampil selama <strong>kuota</strong> proyek Anda masih ada (lihat angka <code>kuota terpakai/maks</code> di <strong>Proyek saya</strong>).</p>
+<ol><li><strong>Data proyek</strong>: Nama Proyek (<strong>wajib</strong>, unik), lokasi, nomor dan nilai kontrak, tanggal mulai/selesai, tipe proyek (Swasta/Pemerintah), metode input kegiatan (Volume/Persen), jumlah pihak tanda tangan.</li><li><strong>Kop dan penanda tangan</strong>: kop baris 1-2, jabatan dan nama tiap pihak.</li><li><strong>Logo</strong> (opsional): maksimal 4 gambar (PNG/JPG, ≤ 2 MB), plus jumlah logo untuk laporan harian/mingguan/bulanan.</li><li><strong>Zona waktu</strong>: WIB, WITA, atau WIT.</li><li><strong>Tim lapangan</strong>: nama, peran, dan PIN pribadi tiap anggota (bisa diubah kapan saja nanti).</li><li>Tekan <strong>Buat Proyek</strong>. Isian yang kurang disorot merah.</li><li>Hasilnya: link spreadsheet dan link aplikasi. Proyek berstatus <strong>menunggu aktivasi</strong> sampai admin menekan <strong>Izinkan</strong> (admin otomatis mendapat email). Bila admin mengatur <em>perlu persetujuan</em>, statusnya <strong>menunggu persetujuan</strong> lebih dulu.</li><li><strong>Kirim file RAB ke admin</strong> supaya diisikan (<a href="#6-input-rab">bagian 6</a>), lalu bagikan link aplikasi ke tim setelah proyek <strong>aktif</strong>.</li></ol>
+<p>Ada langkah yang gagal? Tekan <strong>Ulangi langkah yang gagal</strong> atau <strong>Lanjutkan pembuatan</strong> di Proyek saya.</p>
+<h3 id="93-proyek-saya">9.3 Proyek saya</h3>
+<p>Tiap proyek menampilkan status, link spreadsheet/folder/aplikasi, dan progres, serta tombol berikut:</p>
+<div class="tbl"><table><thead><tr><th>Tombol</th><th>Fungsinya</th></tr></thead><tbody><tr><td><strong>Tim lapangan</strong></td><td>Tambah/ubah/hapus anggota, peran, PIN. Isi juga <strong>email Google</strong> anggota bila ia perlu melihat salinan spreadsheet.</td></tr><tr><td><strong>Buat/Perbarui salinan lihat</strong></td><td>Membuat spreadsheet <code>LIHAT - &lt;proyek&gt;</code> berisi <strong>angka saja</strong> (dashboard, laporan, RAB, log) untuk dilihat Anda dan tim. Diperbarui otomatis tiap hari sekitar pukul 05.00.</td></tr><tr><td><strong>Arsipkan</strong></td><td>Proyek selesai: dikunci hanya baca, lalu dibuat <strong>paket arsip</strong> (file .xlsx + folder foto/PDF/logo). Link arsip dikirim ke email Anda. User: maksimal 1 kali per hari. Ketik <code>arsip - &lt;nama proyek&gt;</code> untuk konfirmasi.</td></tr><tr><td><strong>Hapus proyek</strong></td><td>Hanya untuk proyek arsip, setelah arsip diunduh. Mengembalikan kuota. Ketik <code>hapus - &lt;nama proyek&gt;</code> untuk konfirmasi.</td></tr></tbody></table></div>
+<p><strong>Mengunduh arsip:</strong> buka link folder arsip → klik kanan folder → <strong>Download</strong>. Google Drive membuat file ZIP.</p>
+<blockquote><p><strong>Kuota penuh?</strong> Proyek arsip tetap dihitung kuota sampai dihapus. Urutannya: <strong>Arsipkan</strong> → unduh arsip → <strong>Hapus proyek</strong> → buat proyek baru. Atau minta admin menaikkan kuota.</p></blockquote>
+</section>
+<section data-id="10-tanya-jawab-dan-pesan-yang-sering-muncul">
+<h2 id="10-tanya-jawab-dan-pesan-yang-sering-muncul">10. Tanya jawab dan pesan yang sering muncul</h2>
+<h3 id="101-pesan-di-aplikasi">10.1 Pesan di aplikasi</h3>
+<div class="tbl"><table><thead><tr><th>Pesan</th><th>Artinya</th><th>Yang dilakukan</th></tr></thead><tbody><tr><td><strong>Lengkapi dahulu: …</strong></td><td>Ada isian wajib kosong (disorot merah).</td><td>Isi yang disebut, lalu Simpan lagi.</td></tr><tr><td><strong>Pilih tanggal dahulu.</strong></td><td>Tanggal laporan di atas kosong.</td><td>Ketuk tanggal di atas, pilih tanggal.</td></tr><tr><td><strong>Tanggal … sudah ada di baris N</strong></td><td>Laporan Harian tanggal itu sudah diisi.</td><td>Ubah lewat tab <strong>Riwayat</strong>.</td></tr><tr><td><strong>Bukan angka yang valid</strong></td><td>Angka memakai pemisah ribuan atau huruf.</td><td>Tulis <code>1250</code> atau <code>2,5</code>.</td></tr><tr><td><strong>… melebihi sisa RAB item ini</strong></td><td>Volume lebih besar dari sisa pekerjaan.</td><td>Periksa angka; <strong>Batal</strong> bila salah.</td></tr><tr><td><strong>Daftar RAB kosong</strong></td><td>RAB belum diisi.</td><td>Pemilik mengisi RAB (<a href="#6-input-rab">bagian 6</a>).</td></tr><tr><td><strong>Pilih item pekerjaan untuk foto kegiatan.</strong></td><td>Foto jenis Kegiatan butuh item.</td><td>Pilih item di Referensi.</td></tr><tr><td><strong>Penyimpanan dibatalkan di HP ini…</strong></td><td>Anda menekan Batalkan.</td><td>Cek tab Riwayat; Simpan lagi tidak membuat data ganda.</td></tr><tr><td><strong>Hari ini sebelum tanggal mulai / melewati tanggal selesai proyek</strong></td><td>Pengingat saja.</td><td>Pastikan tanggal laporan benar.</td></tr><tr><td><strong>Aplikasi belum disiapkan</strong></td><td>Proyek belum diaktifkan pemilik.</td><td>Tunggu pemilik menekan <strong>Izinkan</strong>.</td></tr><tr><td><strong>Menunggu persetujuan admin</strong></td><td>Proyek buatan user belum disetujui.</td><td>Hubungi admin.</td></tr><tr><td>Nama/PIN ditolak, atau nama dikunci 15 menit</td><td>PIN salah (berulang kali).</td><td>Tunggu 15 menit, atau minta PIN baru.</td></tr><tr><td>Hanya bisa melihat, tidak bisa mengisi</td><td>Proyek sudah <strong>diarsipkan</strong>.</td><td>Normal untuk proyek selesai.</td></tr><tr><td><strong>Kegiatan sudah tercatat … Impor CCO</strong> (Impor RAB)</td><td>RAB tidak bisa diganti setelah ada kegiatan.</td><td>Hubungi pengelola aplikasi.</td></tr><tr><td><strong>Pustaka pembaca tidak bisa dimuat</strong> (Impor RAB)</td><td>Internet bermasalah.</td><td>Cek sinyal, buka ulang tab Impor RAB.</td></tr></tbody></table></div>
+<h3 id="102-pertanyaan-umum">10.2 Pertanyaan umum</h3>
+<h4 id="apakah-aplikasi-bisa-dipakai-tanpa-sinyal">Apakah aplikasi bisa dipakai tanpa sinyal?</h4>
+<p>Belum. Saat sinyal hilang, isian tidak hilang; tekan Simpan lagi setelah sinyal kembali.</p>
+<h4 id="saya-salah-pilih-tanggal-dan-sudah-menyimpan">Saya salah pilih tanggal dan sudah menyimpan.</h4>
+<p>Buka <strong>Riwayat</strong>, tekan <strong>Hapus</strong> pada entri itu, lalu pilih tanggal yang benar di atas dan isi ulang.</p>
+<h4 id="kenapa-entri-saya-tidak-bisa-diubah">Kenapa entri saya tidak bisa diubah?</h4>
+<p>Riwayat hanya menampilkan entri Anda sendiri. Entri bertanda <em>diubah di sheet</em> sudah diubah pemilik langsung di spreadsheet, sehingga hanya pemilik yang bisa memperbaikinya.</p>
+<h4 id="hp-saya-hilang--ganti-hp">HP saya hilang / ganti HP.</h4>
+<p>Di HP baru, buka link lalu masuk dengan nama dan PIN yang sama. Agar HP lama tidak bisa dipakai, minta pemegang proyek mengganti PIN Anda.</p>
+<h4 id="progres-di-dashboard-tidak-naik">Progres di dashboard tidak naik.</h4>
+<p>Pastikan kegiatan diisi dengan <strong>item yang benar</strong> dan volumenya terisi. Lalu cek tab <strong>Rekap</strong> pada tanggal itu.</p>
+<h4 id="item-pekerjaan-baru-pekerjaan-tambah-belum-ada-di-daftar">Item pekerjaan baru (pekerjaan tambah) belum ada di daftar.</h4>
+<p>Item hanya berasal dari RAB. Hubungi pemilik proyek; perubahan RAB di proyek yang berjalan harus ditangani pengelola aplikasi.</p>
+<h4 id="siapa-yang-bisa-melihat-spreadsheet">Siapa yang bisa melihat spreadsheet?</h4>
+<p>Hanya pemilik. Tim melihat data lewat aplikasi (Rekap) atau <strong>salinan lihat</strong> bila emailnya didaftarkan.</p>
+</section>
+</main>
+</div>
+<button type="button" id="atas" aria-label="Kembali ke atas">↑</button>
+<script>
+(function(){
+  var root=document.documentElement, body=document.body;
+  var tema=['auto','light','dark'], label={auto:'◐ Otomatis',light:'◐ Terang',dark:'◐ Gelap'};
+  function simpan(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function baca(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  var t=baca('panduan-tema')||'auto', tb=document.getElementById('tema');
+  function pasang(){if(t==='auto')root.removeAttribute('data-theme');else root.setAttribute('data-theme',t);tb.textContent=label[t];}
+  pasang();
+  tb.onclick=function(){t=tema[(tema.indexOf(t)+1)%3];simpan('panduan-tema',t);pasang();};
+  document.getElementById('menu').onclick=function(){body.classList.toggle('menu');};
+  document.getElementById('tutup').onclick=function(){body.classList.remove('menu');};
+  var nav=document.querySelector('nav');
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A')body.classList.remove('menu');});
+  var atas=document.getElementById('atas');
+  atas.onclick=function(){window.scrollTo(0,0);};
+  window.addEventListener('scroll',function(){atas.style.display=window.scrollY>600?'block':'none';},{passive:true});
+  var sections=[].slice.call(document.querySelectorAll('section'));
+  var links={};[].forEach.call(nav.querySelectorAll('a'),function(a){links[a.getAttribute('href').slice(1)]=a;});
+  var heads=[].slice.call(document.querySelectorAll('main h2[id],main h3[id]'));
+  function tandai(){var y=window.scrollY+90,cur=null;heads.forEach(function(h){if(h.offsetParent&&h.offsetTop<=y)cur=h.id;});
+    for(var k in links)links[k].classList.toggle('aktif',k===cur);}
+  window.addEventListener('scroll',tandai,{passive:true});tandai();
+  // Buka bagian yang dituju tautan walau sedang tersaring pencarian.
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+    var el=document.getElementById(a.getAttribute('href').slice(1));if(el&&el.closest('section.sembunyi')){q.value='';cari();}});
+  var q=document.getElementById('cari'), hasil=document.getElementById('hasil');
+  function bersih(){[].forEach.call(document.querySelectorAll('main mark'),function(m){m.replaceWith(document.createTextNode(m.textContent));});document.querySelector('main').normalize();}
+  function sorot(el,kata){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),n,ns=[];while((n=w.nextNode()))ns.push(n);
+    ns.forEach(function(n){var s=n.nodeValue,i=s.toLowerCase().indexOf(kata);if(i<0)return;var r=document.createRange();r.setStart(n,i);r.setEnd(n,i+kata.length);var m=document.createElement('mark');r.surroundContents(m);});}
+  function cari(){bersih();var kata=q.value.trim().toLowerCase(),n=0;
+    sections.forEach(function(s){var ok=!kata||s.textContent.toLowerCase().indexOf(kata)>=0;s.classList.toggle('sembunyi',!ok);
+      var a=links[s.getAttribute('data-id')];if(a)a.parentNode.style.display=ok?'':'none';if(ok&&kata){n++;sorot(s,kata);}});
+    hasil.textContent=kata?(n?n+' bagian berisi "'+q.value.trim()+'"':'Tidak ditemukan. Coba kata lain.'):'';tandai();}
+  q.addEventListener('input',cari);
+})();
+</script>
+</body>
+</html>
